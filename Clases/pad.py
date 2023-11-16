@@ -32,12 +32,8 @@ class Pad:
 
     def golpeo_pad1(self, bola):
         if self.y < bola.y < self.y + self.h and bola.x - bola.radio <= self.x:
-            # Calcula la posición relativa al centro del Pad y ajusta la dirección de la bola
-            offset = bola.y - (self.y + self.h / 2)
-            bola.ajustar_direccion(offset)
+            bola.ajustar_direccion()
 
     def golpeo_pad2(self, bola):
         if self.y < bola.y < self.y + self.h and bola.x + bola.radio >= self.x:
-            # Calcula la posición relativa al centro del Pad y ajusta la dirección de la bola
-            offset = bola.y - (self.y + self.h / 2)
-            bola.ajustar_direccion(offset)
+            bola.ajustar_direccion()
