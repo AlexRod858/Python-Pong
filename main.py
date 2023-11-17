@@ -2,7 +2,7 @@ import pygame
 import sys
 from Clases.bola import Bola
 from Clases.pad import Pad
-
+from Campo import campo
 # ------------------------------
 # ------------------------------
 # ------------------------------
@@ -37,9 +37,9 @@ while running:
 
     # Actualizar la posición y manejar la puntuación de la bola
     bola.movimiento(screen)
-
+    # screen.fill('green')  # ACTUALIZA FONDO
+    campo(screen)
     # Resto del código para dibujar y gestionar la lógica del juego
-    screen.fill('green')  # ACTUALIZA FONDO
     bola.dibujar(screen)
     pad1.dibujar(screen)
     pad2.dibujar(screen)
@@ -47,12 +47,12 @@ while running:
     pad2.movimiento(screen, pygame.K_UP, pygame.K_DOWN)
     pad1.golpeo_pad1(bola)
     pad2.golpeo_pad2(bola)
-
     # Asignar las variables locales después de la actualización de la bola
     puntuacion_pad1 = bola.puntuacion_pad1
     puntuacion_pad2 = bola.puntuacion_pad2
 
 
+    # campo.campo()
     puntuacion_texto = font.render(f'{puntuacion_pad1} - {puntuacion_pad2}', True, (255, 255, 255))
     screen.blit(puntuacion_texto, (screen.get_width() // 2 - puntuacion_texto.get_width() // 2, 10))
 

@@ -31,7 +31,7 @@ class Pad:
 
 
     def golpeo_pad1(self, bola):
-        if self.y < bola.y < self.y + self.h and bola.x - bola.radio <= self.x:
+        if self.y < bola.y < self.y + self.h and bola.x - bola.radio <= self.x + self.w:
             bola.ajustar_direccion()
 
     def golpeo_pad2(self, bola):
