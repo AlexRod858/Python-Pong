@@ -26,6 +26,8 @@ pad2 = Pad(730, 50, 20, 120)
 # ------------------------------
 # -J U E G O  P R I N C I P A L-
 # ------------------------------
+font = pygame.font.Font(None, 48)  
+
 # Bucle principal
 running = True
 while running:
@@ -33,7 +35,10 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+    # Actualizar la posición y manejar la puntuación de la bola
     bola.movimiento(screen)
+
+    # Resto del código para dibujar y gestionar la lógica del juego
     screen.fill('green')  # ACTUALIZA FONDO
     bola.dibujar(screen)
     pad1.dibujar(screen)
@@ -43,6 +48,13 @@ while running:
     pad1.golpeo_pad1(bola)
     pad2.golpeo_pad2(bola)
 
+    # Asignar las variables locales después de la actualización de la bola
+    puntuacion_pad1 = bola.puntuacion_pad1
+    puntuacion_pad2 = bola.puntuacion_pad2
+
+
+    puntuacion_texto = font.render(f'{puntuacion_pad1} - {puntuacion_pad2}', True, (255, 255, 255))
+    screen.blit(puntuacion_texto, (screen.get_width() // 2 - puntuacion_texto.get_width() // 2, 10))
 
     # Actualizar la pantalla
     pygame.display.flip()
