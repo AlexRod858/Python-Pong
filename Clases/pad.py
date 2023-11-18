@@ -18,9 +18,9 @@ class Pad:
             # Verificar teclas presionadas y mover el Pad en consecuencia
 
         if keys[tecla_arriba]:
-            self.y -= 0.5
+            self.y -= 5
         elif keys[tecla_abajo]:
-            self.y += 0.5
+            self.y += 5
 
             # Restringir el movimiento para que el Pad no salga de la pantalla
         if self.y < 0:

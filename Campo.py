@@ -3,9 +3,11 @@ import pygame
 class Campo:
     def __init__(self, screen):
         self.screen = screen
+        self.fondo = pygame.image.load("imgs/cesped.jpg")
 
     def dibujar_campo(self):
-        self.screen.fill('green')
+        self.screen.blit(self.fondo, (0, 0))
+        # self.screen.fill('green')
         # BORDE
         pygame.draw.rect(self.screen,'white', (10, 10,self.screen.get_width()-20,self.screen.get_height() -20), width= 4)
         # MITAD

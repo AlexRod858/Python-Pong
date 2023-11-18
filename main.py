@@ -18,7 +18,7 @@ pygame.display.set_caption("Pong Game por AlexRod")
 # ------------------------------
 # ----C R E O  O B J E T O S----
 # ------------------------------
-bola = Bola(400, 300, 40, "black", vel_x = 0.2, vel_y= 0.2)
+bola = Bola(400, 300, 40, "black", vel_x = 3, vel_y= 3)
 pad1 = Pad(20, 50, 20, 120)
 pad2 = Pad(920, 50, 20, 120)
 
@@ -44,38 +44,46 @@ while running:
 # ------------------------------
 # ------------------------------
     if fase_actual == 1:
-            print("Estás en la fase 1")
-            screen.fill('purple')
+
+            fondo = pygame.image.load("imgs/fase1.jpg")
+            screen.blit(fondo, (0, 0))
+            # Configuración de la transparencia
+            superficie_oscura = pygame.Surface((960, 480), pygame.SRCALPHA)
+            superficie_oscura.fill((0, 0, 0, 160)) 
+            screen.blit(superficie_oscura, (0, 0))
 # ------------------------------
             font3 = pygame.font.SysFont(None, 84)
-            ganadores = font3.render('Bienvenido al Pong Game', True, 'orange')
-            screen.blit(ganadores, (screen.get_width() // 2 - ganadores.get_width() // 2, screen.get_height() // 10))
+            font4 = pygame.font.SysFont(None, 48)
+            bienvenido = font3.render('Pong Game', True, 'orange')
+            estilo = font4.render('¡La diversión del clásico con la emoción del fútbol!', True, 'orange')
+            screen.blit(bienvenido, (screen.get_width() // 2 - bienvenido.get_width() // 2, screen.get_height() // 10))
+            screen.blit(estilo, (screen.get_width() // 2 - estilo.get_width() // 2, screen.get_height() // 4))
 # ------------------------------
 # ------------------------------
         # BOTÓN JUGAR
-            pygame.draw.rect(screen, (9,148,32), (screen.get_width() // 2 - 115, 190, 230, 60))
+            pygame.draw.rect(screen, (9,148,32), (screen.get_width() // 2 - 115, 240, 230, 60))
             # TEXTO BOTÓN
             font3 = pygame.font.SysFont(None, 36)
             texto_boton = font3.render("EMPEZAR JUEGO", True, 'white')
-            screen.blit(texto_boton, (screen.get_width() // 2 - texto_boton.get_width() // 2, 210))
+            screen.blit(texto_boton, (screen.get_width() // 2 - texto_boton.get_width() // 2, 260))
             # LINK BOTÓN
             if event.type == pygame.MOUSEBUTTONDOWN:
                 # Verificar si el clic está dentro de las coordenadas del botón
                 if screen.get_width() // 2 - 115 < event.pos[0] < screen.get_width() // 2 + 115 \
-                and 190 < event.pos[1] < 250:
+                and 240 < event.pos[1] < 290:
                     fase_actual = 2
 # ------------------------------
                     # BOTÓN JUGAR
-            pygame.draw.rect(screen, (9,148,32), (screen.get_width() // 2 - 115, 290, 230, 60))
+            pygame.draw.rect(screen, (9,148,32), (screen.get_width() // 2 - 115, 315, 230, 60))
             # TEXTO BOTÓN
             font3 = pygame.font.SysFont(None, 36)
             texto_boton = font3.render("SALIR", True, 'white')
-            screen.blit(texto_boton, (screen.get_width() // 2 - texto_boton.get_width() // 2, 310))
+            screen.blit(texto_boton, (screen.get_width() // 2 - texto_boton.get_width() // 2, 335))
             # LINK BOTÓN
             if event.type == pygame.MOUSEBUTTONDOWN:
                 # Verificar si el clic está dentro de las coordenadas del botón
                 if screen.get_width() // 2 - 115 < event.pos[0] < screen.get_width() // 2 + 115 \
-                and 290 < event.pos[1] < 350:
+                and 315 < event.pos[1] < 375:
                     running = False
 # ------------------------------
 # ------------------------------
@@ -98,8 +106,8 @@ while running:
         puntuacion_pad2 = bola.puntuacion_pad2
 
         # PUNTUACIONES
-        puntuacion_texto = font.render(f'{puntuacion_pad1} - {puntuacion_pad2}', True, 'purple')
-        screen.blit(puntuacion_texto, (screen.get_width() // 2 - puntuacion_texto.get_width() // 2, 16))
+        puntuacion_texto = font.render(f'{puntuacion_pad1} - {puntuacion_pad2}', True, 'yellow')
+        screen.blit(puntuacion_texto, (screen.get_width() // 2 - puntuacion_texto.get_width() // 2, 30))
 
         if puntuacion_pad1 == 5:
             ganador = 'Jugador 1'
