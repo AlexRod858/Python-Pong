@@ -24,7 +24,7 @@ pad2 = Pad(900, 50, 20, 120, "imgs/portero2.png")
 
 # ------------------------------
 # ------------------------------
-fase_actual = 1
+fase_actual = 3
 ganador = ''
 # ------------------------------
 # ------------------------------
@@ -123,12 +123,22 @@ while running:
     elif fase_actual == 3:
         # RESULTADO
         resultado = ganador
-        screen.fill('purple')
-
-        font2 = pygame.font.SysFont(None, 64)
+        # ------------------------------
+        # screen.fill('purple')
+        fondo = pygame.image.load("imgs/fase3.jpg")
+        screen.blit(fondo, (0, 0))
+# ------------------------------
+        font2 = pygame.font.SysFont(None, 100)
         ganadores = font2.render(f'Ganador: {resultado}', True, 'orange')
-        screen.blit(ganadores, (screen.get_width() // 2 - ganadores.get_width() // 2, screen.get_height() // 3))
-
+        screen.blit(ganadores, (screen.get_width() // 2 - ganadores.get_width() // 2, screen.get_height() // 16))
+# ------------------------------
+        if ganador == "Jugador 1":
+            ganador1 = pygame.image.load("imgs/ganador1.png")
+            screen.blit(ganador1, (screen.get_width() // 2 - ganador1.get_width() // 2 -20, screen.get_height() // 5))
+        
+        elif ganador == "Jugador 2":
+            ganador2 = pygame.image.load("imgs/ganador2.png")
+            screen.blit(ganador2, (screen.get_width() // 2 - ganador2.get_width() // 2 -20, screen.get_height() // 5))
 # ------------------------------
         # BOTÓN
         pygame.draw.rect(screen, (9,148,32), (screen.get_width() // 2 - 115, 390, 230, 60))
