@@ -13,7 +13,9 @@ class Bola:
     puntuacion_pad1 = 0
     puntuacion_pad2 = 0
     def dibujar(self, screen):
-        pygame.draw.circle(screen, self.color, (self.x, self.y), self.radio)
+        pelota = pygame.image.load("imgs/pelota.png")
+        pelota = pygame.transform.scale(pelota, (2 * self.radio, 2 * self.radio))
+        screen.blit(pelota, (self.x - self.radio, self.y - self.radio))         # pygame.draw.circle(screen, self.color, (self.x, self.y), self.radio)
 
     
     def ajustar_direccion(self):

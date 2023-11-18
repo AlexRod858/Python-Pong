@@ -19,8 +19,8 @@ pygame.display.set_caption("Pong Game por AlexRod")
 # ----C R E O  O B J E T O S----
 # ------------------------------
 bola = Bola(400, 300, 40, "black", vel_x = 3, vel_y= 3)
-pad1 = Pad(20, 50, 20, 120)
-pad2 = Pad(920, 50, 20, 120)
+pad1 = Pad(20, 50, 20, 120, "imgs/portero1.png")
+pad2 = Pad(900, 50, 20, 120, "imgs/portero2.png")
 
 # ------------------------------
 # ------------------------------
