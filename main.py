@@ -24,14 +24,15 @@ pad2 = Pad(920, 50, 20, 120)
 
 # ------------------------------
 # ------------------------------
-fase_actual = 3
+fase_actual = 1
 ganador = ''
 # ------------------------------
 # ------------------------------
 # -J U E G O  P R I N C I P A L-
 # ------------------------------
 font = pygame.font.Font(None, 48)  
-
+# ------------------------------
+# ------------------------------
 # Bucle principal
 running = True
 while running:
@@ -40,11 +41,45 @@ while running:
             running = False
 # ------------------------------
 # ------------------------------
+# ------------------------------
+# ------------------------------
     if fase_actual == 1:
             print("Estás en la fase 1")
-            # Coloca aquí la lógica específica de la fase 1
-            # Puedes cambiar la fase_actual cuando estés listo para pasar a la siguiente fase:
-            # fase_actual = 2
+            screen.fill('purple')
+# ------------------------------
+            font3 = pygame.font.SysFont(None, 84)
+            ganadores = font3.render('Bienvenido al Pong Game', True, 'orange')
+            screen.blit(ganadores, (screen.get_width() // 2 - ganadores.get_width() // 2, screen.get_height() // 10))
+# ------------------------------
+# ------------------------------
+        # BOTÓN JUGAR
+            pygame.draw.rect(screen, (9,148,32), (screen.get_width() // 2 - 115, 190, 230, 60))
+            # TEXTO BOTÓN
+            font3 = pygame.font.SysFont(None, 36)
+            texto_boton = font3.render("EMPEZAR JUEGO", True, 'white')
+            screen.blit(texto_boton, (screen.get_width() // 2 - texto_boton.get_width() // 2, 210))
+            # LINK BOTÓN
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                # Verificar si el clic está dentro de las coordenadas del botón
+                if screen.get_width() // 2 - 115 < event.pos[0] < screen.get_width() // 2 + 115 \
+                and 190 < event.pos[1] < 250:
+                    fase_actual = 2
+# ------------------------------
+                    # BOTÓN JUGAR
+            pygame.draw.rect(screen, (9,148,32), (screen.get_width() // 2 - 115, 290, 230, 60))
+            # TEXTO BOTÓN
+            font3 = pygame.font.SysFont(None, 36)
+            texto_boton = font3.render("SALIR", True, 'white')
+            screen.blit(texto_boton, (screen.get_width() // 2 - texto_boton.get_width() // 2, 310))
+            # LINK BOTÓN
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                # Verificar si el clic está dentro de las coordenadas del botón
+                if screen.get_width() // 2 - 115 < event.pos[0] < screen.get_width() // 2 + 115 \
+                and 290 < event.pos[1] < 350:
+                    running = False
+# ------------------------------
+# ------------------------------
+# ------------------------------
     elif fase_actual == 2:
 
         bola.movimiento(screen)
@@ -73,31 +108,34 @@ while running:
             ganador = 'Jugador 2'
             fase_actual = 3
         # pygame.display.flip()
-
+# ------------------------------
+# ------------------------------
+# ------------------------------
+# ------------------------------
     elif fase_actual == 3:
         # RESULTADO
         resultado = ganador
+        screen.fill('purple')
 
         font2 = pygame.font.SysFont(None, 64)
         ganadores = font2.render(f'Ganador: {resultado}', True, 'orange')
-        screen.fill('purple')
         screen.blit(ganadores, (screen.get_width() // 2 - ganadores.get_width() // 2, screen.get_height() // 3))
 
 # ------------------------------
         # BOTÓN
-        pygame.draw.rect(screen, (9,148,32), (screen.get_width() // 2 - 115, 290, 230, 60))
+        pygame.draw.rect(screen, (9,148,32), (screen.get_width() // 2 - 115, 390, 230, 60))
         # TEXTO BOTÓN
         font3 = pygame.font.SysFont(None, 36)
         texto_boton = font3.render("JUGAR DE NUEVO", True, 'white')
-        screen.blit(texto_boton, (screen.get_width() // 2 - texto_boton.get_width() // 2, 310))
+        screen.blit(texto_boton, (screen.get_width() // 2 - texto_boton.get_width() // 2, 410))
         # LINK BOTÓN
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Verificar si el clic está dentro de las coordenadas del botón
             if screen.get_width() // 2 - 115 < event.pos[0] < screen.get_width() // 2 + 115 \
-                    and 290 < event.pos[1] < 350:
+                    and 390 < event.pos[1] < 450:
                 bola.puntuacion_pad1 = 0
                 bola.puntuacion_pad2 = 0
-                fase_actual = 2
+                fase_actual = 1
     pygame.display.flip()
 # ------------------------------
 # ------------------------------
