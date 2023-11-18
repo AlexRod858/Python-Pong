@@ -24,7 +24,7 @@ pad2 = Pad(920, 50, 20, 120)
 
 # ------------------------------
 # ------------------------------
-fase_actual = 2
+fase_actual = 3
 ganador = ''
 # ------------------------------
 # ------------------------------
@@ -38,6 +38,8 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+# ------------------------------
+# ------------------------------
     if fase_actual == 1:
             print("Estás en la fase 1")
             # Coloca aquí la lógica específica de la fase 1
@@ -70,13 +72,33 @@ while running:
         elif puntuacion_pad2 == 5:
             ganador = 'Jugador 2'
             fase_actual = 3
-        pygame.display.flip()
+        # pygame.display.flip()
 
     elif fase_actual == 3:
-        screen.fill('yellow')
-        ganador = pygame.font.Font(None, 48).render(f'Ganador: {str(ganador)} !', True, 'blue')
-        screen.blit(ganador, (screen.get_width() // 2 - ganador.get_width() // 2, screen.get_height() // 3))
-        pygame.display.flip()
+        # RESULTADO
+        resultado = ganador
+
+        font2 = pygame.font.SysFont(None, 64)
+        ganadores = font2.render(f'Ganador: {resultado}', True, 'orange')
+        screen.fill('purple')
+        screen.blit(ganadores, (screen.get_width() // 2 - ganadores.get_width() // 2, screen.get_height() // 3))
+
+# ------------------------------
+        # BOTÓN
+        pygame.draw.rect(screen, (9,148,32), (screen.get_width() // 2 - 115, 290, 230, 60))
+        # TEXTO BOTÓN
+        font3 = pygame.font.SysFont(None, 36)
+        texto_boton = font3.render("JUGAR DE NUEVO", True, 'white')
+        screen.blit(texto_boton, (screen.get_width() // 2 - texto_boton.get_width() // 2, 310))
+        # LINK BOTÓN
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            # Verificar si el clic está dentro de las coordenadas del botón
+            if screen.get_width() // 2 - 115 < event.pos[0] < screen.get_width() // 2 + 115 \
+                    and 290 < event.pos[1] < 350:
+                bola.puntuacion_pad1 = 0
+                bola.puntuacion_pad2 = 0
+                fase_actual = 2
+    pygame.display.flip()
 # ------------------------------
 # ------------------------------
 # ------------------------------
